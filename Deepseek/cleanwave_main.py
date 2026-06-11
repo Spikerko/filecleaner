@@ -25,7 +25,7 @@ try:
     import requests
     from plyer import notification
 except ImportError as e:
-    print(f"Missing required dependency: {e}")
+    print("Missing required dependency:", e)
     print("Run: pip install requests plyer")
     sys.exit(1)
 
