@@ -5,4 +5,4 @@ pyyaml>=6.0
 python-docx>=1.1.0
 pdfplumber>=0.10.0
 openpyxl>=3.1.0
-ollama>=0.1.0  # optional, for local AI
+# ollama>=0.1.0  # optional, for local AI
