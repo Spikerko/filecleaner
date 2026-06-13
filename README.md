@@ -119,7 +119,7 @@ Output: [Claude/](Claude/)
 Originally, I set the Effort setting to Medium and ended up using the entirety of Claude's 5-hour limit with thinking and some follow-up questions from the model. 
 After the limit reset, I answered its questions. It then proceeded to ask me another round of questions, which I answered and also added Deepseek's output.
 
-Claude read Deepseek's code, pointed out errors (see below), and began building.
+Claude read Deepseek's code, pointed out errors (see below), and began building. It chose to name the project "cleanwave", possibly due to Deepseek's choice of name.
 > nice, solid bones in that deepseek code — but it has a few real bugs (undefined `CHECKPOINT_INTERVAL`, `MAX_AI_FILE_SIZE_BYTES`, `DEFAULT_WHITELIST_PATTERNS`, a misaligned `else` in the AI fallback, and a `large_files` reference that crashes if `--find-large-files` isn't passed). also uses `is_relative_to()` which is Python 3.9+ and Catalina ships with 3.8. gonna use it as inspiration, not a base — rewriting clean.  
 
 It then gave me a file tree, a basic usage guide, a comparison versus the Deepseek version, and then a `.zip` of the full project.
