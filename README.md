@@ -107,50 +107,50 @@ flowchart LR
 5. [Aider](https://aider.chat/)
 ### Findings
 1. **Claude Sonnet 4.6**
-   Output: [Claude/](Claude/)
-   > Overall: **8/10**
-   > 
-   > Human effort: **5/10**
-   > 
-   > AI code errors: **2/10**
-   > 
-   > Back-and-forth: **4/10**
-   
-   Originally, I set the Effort setting to Medium and ended up using the entirety of Claude's 5-hour limit with thinking and some follow-up questions from the model. 
-   After the limit reset, I answered its questions. It then proceeded to ask me another round of questions, which I answered and also added Deepseek's output.
+Output: [Claude/](Claude/)
+> Overall: **8/10**
+> 
+> Human effort: **5/10**
+> 
+> AI code errors: **2/10**
+> 
+> Back-and-forth: **4/10**
 
-   Claude read Deepseek's code, pointed out errors (see below), and began building.
-   > nice, solid bones in that deepseek code — but it has a few real bugs (undefined `CHECKPOINT_INTERVAL`, `MAX_AI_FILE_SIZE_BYTES`, `DEFAULT_WHITELIST_PATTERNS`, a misaligned `else` in the AI fallback, and a `large_files` reference that crashes if `--find-large-files` isn't passed). also uses `is_relative_to()` which is Python 3.9+ and Catalina ships with 3.8. gonna use it as inspiration, not a base — rewriting clean.  
-   
-   It then gave me a file tree, a basic usage guide, a comparison versus the Deepseek version, and then a `.zip` of the full project.
+Originally, I set the Effort setting to Medium and ended up using the entirety of Claude's 5-hour limit with thinking and some follow-up questions from the model. 
+After the limit reset, I answered its questions. It then proceeded to ask me another round of questions, which I answered and also added Deepseek's output.
 
-   Upon running the code, it stalled while assessing with AI due to Error 400s from Groq. Upon a Groq console check, it was revealed that the model Claude originally selected to be used in the code was deprecated. I gave Claude a list of active models and told it to pick a new one.
-   It then chose `llama-3.1-8b-instant` (compared to `llama3-8b-8192` from before), told me which line to change, and then... uploaded the `.zip` again?
+Claude read Deepseek's code, pointed out errors (see below), and began building.
+> nice, solid bones in that deepseek code — but it has a few real bugs (undefined `CHECKPOINT_INTERVAL`, `MAX_AI_FILE_SIZE_BYTES`, `DEFAULT_WHITELIST_PATTERNS`, a misaligned `else` in the AI fallback, and a `large_files` reference that crashes if `--find-large-files` isn't passed). also uses `is_relative_to()` which is Python 3.9+ and Catalina ships with 3.8. gonna use it as inspiration, not a base — rewriting clean.  
 
-   Running the new code also stalled at the same point, with Error 429s being returned from Groq as the free plan I am using has rate limits much lower than the amount of requests we were calling. Additionally, the in-terminal progress bar was stuck on 0 despite a few 200s showing in the console.
-   I passed this on to Claude, who fixed the issue by adding callbacks to update the progress bar, a delay between batches, retries, and a file cap which, when exceeded, would just skip assessing with AI and require manual approval. It then also returned a new `.zip`.
+It then gave me a file tree, a basic usage guide, a comparison versus the Deepseek version, and then a `.zip` of the full project.
 
-   I then told it to stop giving me `.zip`s and only return changed files. It agreed and followed the instruction from there.
+Upon running the code, it stalled while assessing with AI due to Error 400s from Groq. Upon a Groq console check, it was revealed that the model Claude originally selected to be used in the code was deprecated. I gave Claude a list of active models and told it to pick a new one.
+It then chose `llama-3.1-8b-instant` (compared to `llama3-8b-8192` from before), told me which line to change, and then... uploaded the `.zip` again?
 
-   I asked it to remove the file cap, exclude venv-related files as they were clogging up the output, and also asked it if we could print the `--dry-run` output cleaner. Its response gave me correctly line-numbered replacement blocks (with proper indentation) and some other instructions. I requested a full file for one of the responses as it was not fully clear what to replace. It also gave me some options for prettier output, which I discussed further with it.
+Running the new code also stalled at the same point, with Error 429s being returned from Groq as the free plan I am using has rate limits much lower than the amount of requests we were calling. Additionally, the in-terminal progress bar was stuck on 0 despite a few 200s showing in the console.
+I passed this on to Claude, who fixed the issue by adding callbacks to update the progress bar, a delay between batches, retries, and a file cap which, when exceeded, would just skip assessing with AI and require manual approval. It then also returned a new `.zip`.
 
-   > [!NOTE]
-   > Claude is the only model I have tried so far that is aware of file line numbers. No other model has given me correct "replace {xyz} lines with {abc}."
+I then told it to stop giving me `.zip`s and only return changed files. It agreed and followed the instruction from there.
 
-   After my response for the options it gave, it listed a plan and began working.
+I asked it to remove the file cap, exclude venv-related files as they were clogging up the output, and also asked it if we could print the `--dry-run` output cleaner. Its response gave me correctly line-numbered replacement blocks (with proper indentation) and some other instructions. I requested a full file for one of the responses as it was not fully clear what to replace. It also gave me some options for prettier output, which I discussed further with it.
 
-   > [!NOTE]
-   > Currently, my Claude limits are exhausted. This section of the README will be updated when further interaction is done.
+> [!NOTE]
+> Claude is the only model I have tried so far that is aware of file line numbers. No other model has given me correct "replace {xyz} lines with {abc}."
+
+After my response for the options it gave, it listed a plan and began working.
+
+> [!NOTE]
+> Currently, my Claude limits are exhausted. This section of the README will be updated when further interaction is done.
    
 2. **Deepseek Chat**
-   Output: [Deepseek/](Deepseek/)
-   > Overall: **6/10**
-   >
-   > Human Effort: **4/10**
-   >
-   > AI code errors: **8/10** (could not get successful run)
-   >
-   > Back-and-forth: **3/10** (did not go too far)
+Output: [Deepseek/](Deepseek/)
+> Overall: **6/10**
+>
+> Human Effort: **4/10**
+>
+> AI code errors: **8/10** (could not get successful run)
+>
+> Back-and-forth: **3/10** (did not go too far)
 
-   I'll update this section soon. I didn't manage to get a proper, working output with Deepseek as it couldn't output a file without errors.
-   
+I'll update this section soon. I didn't manage to get a proper, working output with Deepseek as it couldn't output a file without errors.
+
