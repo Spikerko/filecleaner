@@ -134,13 +134,13 @@ flowchart LR
 
    I asked it to remove the file cap, exclude venv-related files as they were clogging up the output, and also asked it if we could print the `--dry-run` output cleaner. Its response gave me correctly line-numbered replacement blocks (with proper indentation) and some other instructions. I requested a full file for one of the responses as it was not fully clear what to replace. It also gave me some options for prettier output, which I discussed further with it.
 
-   > [!NOTE]
-   > Claude is the only model I have tried so far that is aware of file line numbers. No other model has given me correct "replace {xyz} lines with {abc}."
+> [!NOTE]
+> Claude is the only model I have tried so far that is aware of file line numbers. No other model has given me correct "replace {xyz} lines with {abc}."
 
    After my response for the options it gave, it listed a plan and began working.
 
-   > [!NOTE]
-   > Currently, my Claude limits are exhausted. This section of the README will be updated when further interaction is done.
+> [!NOTE]
+> Currently, my Claude limits are exhausted. This section of the README will be updated when further interaction is done.
    
 2. **Deepseek Chat**
    Output: [Deepseek/](Deepseek/)
